@@ -192,7 +192,7 @@ curl -L [https://github.com/OUIsolutions/Darwin/releases/download/0.4.0/darwin.o
 ```bash
 git clone [https://github.com/OUIsolutions/zeero800.git](https://github.com/OUIsolutions/zeero800.git)
 cd zeero800
-darwin run_blueprint build/ --mode folder amalgamation_build alpine_static_build windowsi32_build windowsi64_build rpm_static_build debian_static_build --provider podman
+darwin run_blueprint build/ --mode folder amalgamation_build alpine_static_build windowsi32_build windowsi64_build rpm_static_build debian_static_build --contanizer podman
 ```
 
 ## Why "zero800"? 🤷
