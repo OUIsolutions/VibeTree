@@ -1,7 +1,7 @@
-#include "dependencies/CArgvParseOne.c"
-#include "dependencies/doTheWorldOne.c"
+#include "../dependencies/CArgvParseOne.c"
+#include "../dependencies/doTheWorldOne.c"
 #include "flags.h"
-#include "src/colors.h"
+#include "colors.h"
 
 int collect_data(CArgvParse *args) {
     return 0; // Return 0 to indicate success.
