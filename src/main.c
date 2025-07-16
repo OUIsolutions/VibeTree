@@ -2,14 +2,15 @@
 #include "../dependencies/doTheWorldOne.c"
 #include "flags.h"
 #include "colors.h"
-void add_to_json_if_not_binary(cJSON *out_json,const char *file_path) {
+void add_to_json(cJSON *out_json,const char *file_path) {
     char *content = dtw_load_string_file_content(file_path);
     if (content) {
         cJSON_AddStringToObject(out_json, file_path, content);
         free(content);
-    } else {
-        printf(ERROR_COLOR"Warning: Skipping binary file %s\n", file_path);
-    }
+        return;
+    } 
+    cJSON_AddNullToObject(out_json, file_path);
+    
 }
 
 int collect_data(CArgvParse *args) {
@@ -40,12 +41,12 @@ int collect_data(CArgvParse *args) {
         const char *current_entrie = CArgvParse_get_flag(args,FLAG_ENTRIES,total_entries,i);
         int type = dtw_entity_type(current_entrie);
         if(type == DTW_FILE_TYPE) {
-            add_to_json_if_not_binary(data, current_entrie);
+            add_to_json(data, current_entrie);
         } 
         if(type == DTW_FOLDER_TYPE) {
             DtwStringArray *files = dtw_list_files_recursively(current_entrie,DTW_CONCAT_PATH);
             for(int j = 0; j < files->size; j++){
-                add_to_json_if_not_binary(data, files->strings[j]);
+                add_to_json(data, files->strings[j]);
             }
             DtwStringArray_free(files);
         }
@@ -102,6 +103,9 @@ int implement(CArgvParse *args) {
         
         const char *key = item->string;
         const char *value = item->valuestring;
+        if(value == NULL) {
+           continue;
+        }
         dtw_write_string_file_content(key, value);    
     }
     cJSON_Delete(json);
@@ -115,7 +119,7 @@ int main(int argc, char *argv[]) {
         printf(ERROR_COLOR"Error: No action specified. Use 'collect' or 'implement'.\n");
         return 1; // Return non-zero to indicate failure.
     }
-    
+
     if (strcmp(action, "collect") == 0) {
         return collect_data(&args);
     }
