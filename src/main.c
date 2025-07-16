@@ -22,17 +22,17 @@ int collect_data(CArgvParse *args) {
         return 1;
     }
 
-    int total_json_flag = sizeof(FLAG_JSON)/sizeof(char*);
-    int json_flag_size = CArgvParse_get_flag_size(args,FLAG_JSON,total_json_flag);
-    if(json_flag_size == 0){
-        printf(ERROR_COLOR"Error: No JSON flag specified.\n");
+    int total_out_instructions_flag = sizeof(OUT_INSTRUCTIONS)/sizeof(char*);
+    int out_instructions_flag_size = CArgvParse_get_flag_size(args,OUT_INSTRUCTIONS,total_out_instructions_flag);
+    if(out_instructions_flag_size == 0){
+        printf(ERROR_COLOR"Error: No out-instructions flag specified.\n");
         return 1;
     } 
-    if(json_flag_size > 1){
-        printf(ERROR_COLOR"Error: Multiple JSON flags specified.\n");
+    if(out_instructions_flag_size > 1){
+        printf(ERROR_COLOR"Error: Multiple out-instructions flags specified.\n");
         return 1;
     }
-    const char *json_file_path = CArgvParse_get_flag(args,FLAG_JSON,total_json_flag,0);
+    const char *json_file_path = CArgvParse_get_flag(args,OUT_INSTRUCTIONS,total_out_instructions_flag,0);
 
     cJSON *data = cJSON_CreateObject();
     for(int i = 0; i <entries_flag_size; i++){
