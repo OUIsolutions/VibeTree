@@ -55,20 +55,16 @@ int collect_data(CArgvParse *args) {
     
     // Create a comprehensive instruction message
     const char *instruction_template = 
-        "IMPORTANT: You must respond ONLY with a valid JSON object.\n"
+             "IMPORTANT: You must respond ONLY with a valid JSON object.\n"
         "Do NOT include any explanatory text, markdown formatting, or code blocks.\n"
         "The response must be parseable JSON that follows this exact structure:\n\n"
         "{\n"
-        "  \"file_path_1\": \"modified_content_of_file_1\",\n"
-        "  \"file_path_2\": \"modified_content_of_file_2\",\n"
-        "  \"file_path_n\": \"modified_content_of_file_n\"\n"
+        "  \"file_path_1\": \"content_of_file_1\",\n"
+        "  \"file_path_2\": \"content_of_file_2\",\n"
+        "  \"file_path_n\": \"content_of_file_n\"\n"
         "}\n\n"
-        "IMPORTANT: Return ONLY the files that need to be modified with their new content.\n"
-        "Do NOT return files that don't need changes.\n"
-        "Do NOT return the complete original content - only return the modified versions.\n"
-        "If a file doesn't need modification, simply omit it from the response.\n\n"
-        "Here is the current state of the files for reference:\n%s\n\n"
-        "Remember: Respond ONLY with a JSON object containing ONLY the files that need modifications, nothing else.";
+        "Here is the specific JSON structure you must follow:\n%s\n\n"
+        "Remember: Respond ONLY with the JSON object, nothing else.";
     
     size_t message_size = strlen(instruction_template) + strlen(json_string) + 1;
     char *whole_message = malloc(message_size);
