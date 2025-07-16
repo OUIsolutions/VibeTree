@@ -13,6 +13,7 @@ out.json
 *.ilk
 *.map
 .cache
+instruction
 *.exp
 
 # Precompiled Headers
