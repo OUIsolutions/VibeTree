@@ -20,7 +20,7 @@ function alpine_static_build()
             { "./dependencies",     "/dependencies" }
 
         },
-        command = "gcc --static /release/main.c -o /release/alpine_static_bin.out"
+        command = "gcc --static /release/amalgamation.c -o /release/alpine_static_bin.out"
 
     })
 end

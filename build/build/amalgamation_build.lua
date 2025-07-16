@@ -4,8 +4,7 @@ function amalgamation_build()
         return
     end
     alreay_amalamated_done = true
-    
     local runtime = darwin.camalgamator.generate_amalgamation("src/main.c")
-    darwin.dtw.write_file("release/VibeTree.c", runtime)
+    darwin.dtw.write_file("release/amalgamation.c", runtime)
 
 end
