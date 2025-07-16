@@ -22,10 +22,10 @@ function main()
         end
     end
 
-    darwin.dtw.move_any_overwriting("release/alpine_static_bin.out","release/VibeTree.out")
-    darwin.dtw.move_any_overwriting("release/windows64.exe","release/VibeTree64.exe")
-    darwin.dtw.move_any_overwriting("release/windowsi32.exe","release/VibeTreei32.exe")
-    darwin.dtw.move_any_overwriting("release/debian_static.deb","release/VibeTree.deb")
-    darwin.dtw.move_any_overwriting("release/rpm_static_build.rpm","release/VibeTree.rpm")
+    darwin.dtw.move_any_overwriting("release/alpine_static_bin.out","release/zero800.out")
+    darwin.dtw.move_any_overwriting("release/windows64.exe","release/zero80064.exe")
+    darwin.dtw.move_any_overwriting("release/windowsi32.exe","release/zero800i32.exe")
+    darwin.dtw.move_any_overwriting("release/debian_static.deb","release/zero800.deb")
+    darwin.dtw.move_any_overwriting("release/rpm_static_build.rpm","release/zero800.rpm")
 
 end

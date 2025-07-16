@@ -7,7 +7,7 @@ function silver_chain_organize()
     silver_chain_organize_done = true
     darwin.silverchain.generate({
         src = "src",
-        project_short_cut = "VibeTree",
+        project_short_cut = "zero800",
         tags = { 
             "api_dependencies",
         "api_const",
