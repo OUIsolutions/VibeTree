@@ -3,7 +3,7 @@
 #include "flags.h"
 #include "colors.h"
 
-#define VERSION "0.0.1"
+#define VERSION "0.2.0"
 
 void add_to_json(cJSON *out_json,const char *file_path) {
     cJSON *file_obj = cJSON_CreateObject();
