@@ -42,7 +42,7 @@ int collect_data(CArgvParse *args) {
     // Check for prompt flag
     int total_prompt = sizeof(FLAG_PROMPT)/sizeof(char*);
     int prompt_flag_size = CArgvParse_get_flag_size(args,FLAG_PROMPT,total_prompt);
-    const char *custom_prompt = NULL;
+    const char *custom_prompt = "";
     if(prompt_flag_size > 0){
         if(prompt_flag_size > 1){
             printf(ERROR_COLOR"Error: Multiple prompt flags specified.\n");
@@ -72,34 +72,24 @@ int collect_data(CArgvParse *args) {
     
     // Create a comprehensive instruction message
     const char *instruction_template = 
-        "IMPORTANT: You must respond ONLY with a valid JSON array.\n"
-        "Do NOT include any explanatory text, markdown formatting, or code blocks.\n"
-        "The response must be parseable JSON that follows this exact structure:\n\n"
+        "%s\nIMPORTANT: You must respond in these format: .\n"
+
         "[\n"
         "  {\"path\": \"file_path_1\", \"content\": \"content_of_file_1 or null\"},\n"
         "  {\"path\": \"file_path_2\", \"content\": \"content_of_file_2 or null\"},\n"
         "  {\"path\": \"file_path_n\", \"content\": \"content_of_file_n or null\"}\n"
         "]\n\n"
-        "Here is the specific JSON structure you must follow:\n%s\n\n"
-        "Remember: Respond ONLY with the JSON array, nothing else.";
-    
+        "file tree:\n%s\n\n";
     // Calculate message size considering custom prompt
-    size_t prompt_size = custom_prompt ? strlen(custom_prompt) + 2 : 0; // +2 for "\n\n"
+    size_t prompt_size = strlen(custom_prompt) + 2; // +2 for "\n\n"
     size_t message_size = strlen(instruction_template) + strlen(json_string) + prompt_size + 1;
     char *whole_message = malloc(message_size);
     
-    if (custom_prompt) {
-        snprintf(whole_message, message_size, "%s\n\n%s", custom_prompt, instruction_template);
-        // Now we need to format with json_string
-        char *temp_message = malloc(message_size + strlen(json_string));
-        snprintf(temp_message, message_size + strlen(json_string), whole_message, json_string);
-        free(whole_message);
-        whole_message = temp_message;
-    } else {
-        snprintf(whole_message, message_size, instruction_template, json_string);
-    }
+  
+    snprintf(whole_message, message_size, instruction_template, custom_prompt,json_string);
 
     
+
     dtw_write_string_file_content(out_instruction_path, whole_message);
     
     free(json_string);
