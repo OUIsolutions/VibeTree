@@ -20,7 +20,7 @@ void add_to_json(cJSON *out_json,const char *file_path) {
 
 int collect_data(CArgvParse *args) {
     int total_entries = sizeof(FLAG_ENTRIES)/sizeof(char*);
-    int entries_flag_size = CArgvParse_get_flag_size(args,FLAG_ENTRIES,total_entries);
+    int entries_flag_size = CArgvParse_get_infinity_flag_size(args,FLAG_ENTRIES,total_entries);
 
     if(entries_flag_size == 0){
         printf(ERROR_COLOR"Error: No entries specified.\n");
@@ -53,7 +53,7 @@ int collect_data(CArgvParse *args) {
 
     cJSON *data = cJSON_CreateArray();
     for(int i = 0; i <entries_flag_size; i++){
-        const char *current_entrie = CArgvParse_get_flag(args,FLAG_ENTRIES,total_entries,i);
+        const char *current_entrie = CArgvParse_get_infinty_flag(args,FLAG_ENTRIES,total_entries,i);
         int type = dtw_entity_type(current_entrie);
         if(type == DTW_FILE_TYPE) {
             add_to_json(data, current_entrie);
