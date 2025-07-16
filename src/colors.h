@@ -1,0 +1,2 @@
+#define ERROR_COLOR "\033[0;31m"
+#define SUCCESS_COLOR "\033[0;32m"
