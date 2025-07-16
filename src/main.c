@@ -37,7 +37,7 @@ int collect_data(CArgvParse *args) {
         printf(ERROR_COLOR"Error: Multiple No Out Instructions flags specified.\n");
         return 1;
     }
-    const char *out_instruction_path = CArgvParse_get_flag(args,FLAG_JSON,total_out_instructions,0);
+    const char *out_instruction_path = CArgvParse_get_flag(args,OUT_INSTRUCTIONS,total_out_instructions,0);
 
     cJSON *data = cJSON_CreateArray();
     for(int i = 0; i <entries_flag_size; i++){
@@ -54,7 +54,7 @@ int collect_data(CArgvParse *args) {
             DtwStringArray_free(files);
         }
     }
-    
+
     // Create the example JSON with proper formatting
     char *json_string = cJSON_Print(data);  // Use formatted print for clarity
     
@@ -74,11 +74,13 @@ int collect_data(CArgvParse *args) {
     size_t message_size = strlen(instruction_template) + strlen(json_string) + 1;
     char *whole_message = malloc(message_size);
     snprintf(whole_message, message_size, instruction_template, json_string);
+    printf("chegou aqui%s \n",out_instruction_path);
 
     dtw_write_string_file_content(out_instruction_path, whole_message);
     
     free(json_string);
     free(whole_message);
+
     cJSON_Delete(data);
     return 0;
 }
