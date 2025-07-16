@@ -33,11 +33,11 @@ Choose the version for your computer:
 
 | Your Computer | Download Link | Description |
 |--------------|---------------|-------------|
-| Windows (64-bit) | [zero80064.exe](https://github.com/OUIsolutions/zeero800/releases/download/0.0.1/zero80064.exe) | Most modern Windows PCs |
-| Windows (32-bit) | [zero800i32.exe](https://github.com/OUIsolutions/zeero800/releases/download/0.0.1/zero800i32.exe) | Older Windows PCs |
-| Linux | [zero800.out](https://github.com/OUIsolutions/zeero800/releases/download/0.0.1/zero800.out) | Any Linux distribution |
-| Debian/Ubuntu | [zero800.deb](https://github.com/OUIsolutions/zeero800/releases/download/0.0.1/zero800.deb) | Debian-based systems |
-| RedHat/Fedora | [zero800.rpm](https://github.com/OUIsolutions/zeero800/releases/download/0.0.1/zero800.rpm) | RPM-based systems |
+| Windows (64-bit) | [zero80064.exe](https://github.com/OUIsolutions/zeero800/releases/download/0.2.0/zero80064.exe) | Most modern Windows PCs |
+| Windows (32-bit) | [zero800i32.exe](https://github.com/OUIsolutions/zeero800/releases/download/0.2.0/zero800i32.exe) | Older Windows PCs |
+| Linux | [zero800.out](https://github.com/OUIsolutions/zeero800/releases/download/0.2.0/zero800.out) | Any Linux distribution |
+| Debian/Ubuntu | [zero800.deb](https://github.com/OUIsolutions/zeero800/releases/download/0.2.0/zero800.deb) | Debian-based systems |
+| RedHat/Fedora | [zero800.rpm](https://github.com/OUIsolutions/zeero800/releases/download/0.2.0/zero800.rpm) | RPM-based systems |
 
 ### Step 2: Collect Your Code
 
@@ -149,7 +149,7 @@ Use this flag to quickly see the current version of zero800.
 
 **Example Output:**
 ```
-zero800 version 0.0.1
+zero800 version 0.2.0
 ```
 
 ## Real-World Example 🌟
