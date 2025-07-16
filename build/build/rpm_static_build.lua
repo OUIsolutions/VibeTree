@@ -17,50 +17,46 @@ Summary:        SUMARY
 Source0:        alpine_static_bin.out
 
 License:        LICENSE
-URL:           PROJECT_URL
+URL:            PROJECT_URL
 
-BuildRoot:      %{_tmppath}/%{name}-%{version}-buildroot
+BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      x86_64
 
 %description
-
-DESCRIPITION
+DESCRIPTION
 
 %prep
 
 %build
 
-
 %install
 mkdir -p %{buildroot}/usr/local/bin
 cp %{_sourcedir}/alpine_static_bin.out   %{buildroot}/usr/local/bin/PROJECT_NAME
 chmod +x %{buildroot}/usr/local/bin/PROJECT_NAME
+
 %files
 /usr/local/bin/PROJECT_NAME
 
 %changelog
-* TIMEZONE - FULLNAME EMAIL  - 1.0.0-1
+* TIMEZONE - FULLNAME EMAIL  - VERSION-1
 - YOUR_CHANGES
 ]]
 
     formmatted_rpm = string.gsub(formmatted_rpm, "PROJECT_NAME", PROJECT_NAME)
     formmatted_rpm = string.gsub(formmatted_rpm, "VERSION", VERSION)
     formmatted_rpm = string.gsub(formmatted_rpm, "SUMARY", SUMARY)
-
     formmatted_rpm = string.gsub(formmatted_rpm, "LICENSE", LICENSE)
-    formmatted_rpm = string.gsub(formmatted_rpm, "DESCRIPITION", DESCRIPITION)
+    formmatted_rpm = string.gsub(formmatted_rpm, "DESCRIPTION", DESCRIPTION)
     formmatted_rpm = string.gsub(formmatted_rpm, "PROJECT_URL", URL)
     formmatted_rpm = string.gsub(formmatted_rpm, "FULLNAME", FULLNAME)
     formmatted_rpm = string.gsub(formmatted_rpm, "TIMEZONE", os.date("%a %b %d %Y"))
-
     formmatted_rpm = string.gsub(formmatted_rpm, "EMAIL", EMAIL)
     formmatted_rpm = string.gsub(formmatted_rpm, "YOUR_CHANGES", YOUR_CHANGES)
-
 
     darwin.dtw.write_file(".cache/rpm_static_build/SPECS/project.spec", formmatted_rpm)
     os.execute("mkdir -p .cache/rpm_static_build/RPMS")
 
-    local image = darwin.ship.create_machine("fedora:latest")
+    local image = darwin.ship.create_machine("almalinux:latest")
     image.add_comptime_command("dnf install rpm-build rpmdevtools -y")
     image.provider = CONTANIZER
 
