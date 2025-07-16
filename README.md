@@ -1,4 +1,4 @@
-# VibeTree
+# zero800
 A map system projected to import and export larger code bases to llm 
 
 ## Cli Usage
