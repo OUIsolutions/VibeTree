@@ -47,6 +47,7 @@ int collect_data(CArgvParse *args) {
             for(int j = 0; j < files->size; j++){
                 add_to_json_if_not_binary(data, files->strings[j]);
             }
+            DtwStringArray_free(files);
         }
     }
     char *json_string = cJSON_PrintUnformatted(data);
@@ -103,7 +104,8 @@ int implement(CArgvParse *args) {
         const char *value = item->valuestring;
         dtw_write_string_file_content(key, value);    
     }
-
+    cJSON_Delete(json);
+    return 0;
 }
 
 int main(int argc, char *argv[]) {
