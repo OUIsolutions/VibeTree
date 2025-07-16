@@ -6,7 +6,7 @@ dependencies
 *.ko
 *.obj
 *.elf
-
+release
 # Linker output
 *.ilk
 *.map

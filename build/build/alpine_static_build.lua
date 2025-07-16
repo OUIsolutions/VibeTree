@@ -5,9 +5,7 @@ function alpine_static_build()
         return
     end
     alpine_static_build_done = true
-    silver_chain_organize()
-
-    os.execute("mkdir -p release")
+    amalgamation_build()
 
     local image = darwin.ship.create_machine("alpine:latest")
     image.provider = CONTANIZER
@@ -17,8 +15,6 @@ function alpine_static_build()
     image.start({
         volumes = {
             { "./release", "/release" },
-            { "./dependencies",     "/dependencies" }
-
         },
         command = "gcc --static /release/amalgamation.c -o /release/alpine_static_bin.out"
 
