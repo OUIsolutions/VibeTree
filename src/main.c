@@ -109,7 +109,11 @@ int main(int argc, char *argv[]) {
     const char *action =  CArgvParse_get_arg(&args, 1);
     if (strcmp(action, "collect") == 0) {
         return collect_data(&args);
-    } else {
+    }
+    if (strcmp(action, "implement") == 0) {
+        return implement(&args);
+    }
+    else {
         printf(ERROR_COLOR"Unknown action: %s\n", action);
         return 1; // Return non-zero to indicate failure.
     }
