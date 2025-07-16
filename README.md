@@ -33,11 +33,11 @@ Choose the version for your computer:
 
 | Your Computer | Download Link | Description |
 |--------------|---------------|-------------|
-| Windows (64-bit) | [zero80064.exe](https://github.com/OUIsolutions/zeero800/releases/download/0.2.0/zero80064.exe) | Most modern Windows PCs |
-| Windows (32-bit) | [zero800i32.exe](https://github.com/OUIsolutions/zeero800/releases/download/0.2.0/zero800i32.exe) | Older Windows PCs |
-| Linux | [zero800.out](https://github.com/OUIsolutions/zeero800/releases/download/0.2.0/zero800.out) | Any Linux distribution |
-| Debian/Ubuntu | [zero800.deb](https://github.com/OUIsolutions/zeero800/releases/download/0.2.0/zero800.deb) | Debian-based systems |
-| RedHat/Fedora | [zero800.rpm](https://github.com/OUIsolutions/zeero800/releases/download/0.2.0/zero800.rpm) | RPM-based systems |
+| Windows (64-bit) | [zero80064.exe](https://github.com/OUIsolutions/zero800/releases/download/0.2.0/zero80064.exe) | Most modern Windows PCs |
+| Windows (32-bit) | [zero800i32.exe](https://github.com/OUIsolutions/zero800/releases/download/0.2.0/zero800i32.exe) | Older Windows PCs |
+| Linux | [zero800.out](https://github.com/OUIsolutions/zero800/releases/download/0.2.0/zero800.out) | Any Linux distribution |
+| Debian/Ubuntu | [zero800.deb](https://github.com/OUIsolutions/zero800/releases/download/0.2.0/zero800.deb) | Debian-based systems |
+| RedHat/Fedora | [zero800.rpm](https://github.com/OUIsolutions/zero800/releases/download/0.2.0/zero800.rpm) | RPM-based systems |
 
 ### Step 2: Collect Your Code
 
@@ -190,8 +190,8 @@ curl -L [https://github.com/OUIsolutions/Darwin/releases/download/0.4.0/darwin.o
 
 ### Build Command:
 ```bash
-git clone [https://github.com/OUIsolutions/zeero800.git](https://github.com/OUIsolutions/zeero800.git)
-cd zeero800
+git clone [https://github.com/OUIsolutions/zero800.git](https://github.com/OUIsolutions/zero800.git)
+cd zero800
 darwin run_blueprint build/ --mode folder amalgamation_build alpine_static_build windowsi32_build windowsi64_build rpm_static_build debian_static_build --contanizer podman
 ```
 
@@ -205,7 +205,7 @@ It's our way of saying: "Ligue grátis para a IA!" (Call AI for free!) 📞
 
 ## Get Help 🆘
 
-- **Having issues?** Open an issue on [GitHub](https://github.com/OUIsolutions/zeero800/issues)
+- **Having issues?** Open an issue on [GitHub](https://github.com/OUIsolutions/zero800/issues)
 - **Want to contribute?** Pull requests are welcome!
 - **Love the project?** Give us a ⭐ on GitHub!
 
