@@ -14,18 +14,16 @@ void add_to_json_if_not_binary(cJSON *out_json,const char *file_path) {
 
 int collect_data(CArgvParse *args) {
 
-
-    const char* entries[] = {"entries","e"};
-    int total_entries = sizeof(entries)/sizeof(char*);
-    int entries_flag_size = CArgvParse_get_flag_size(args,entries,total_entries);
+    int total_entries = sizeof(FLAG_ENTRIES)/sizeof(char*);
+    int entries_flag_size = CArgvParse_get_flag_size(args,FLAG_ENTRIES,total_entries);
 
     if(entries_flag_size == 0){
         printf(ERROR_COLOR"Error: No entries specified.\n");
         return 1; // Return non-zero to indicate failure.
     }
-    const char *json_flag[] = {"json","j"};
-    int total_json_flag = sizeof(json_flag)/sizeof(char*);
-    int json_flag_size = CArgvParse_get_flag_size(args,json_flag,total_json_flag);
+
+    int total_json_flag = sizeof(FLAG_JSON)/sizeof(char*);
+    int json_flag_size = CArgvParse_get_flag_size(args,FLAG_JSON,total_json_flag);
     if(json_flag_size == 0){
         printf(ERROR_COLOR"Error: No JSON flag specified.\n");
         return 1; // Return non-zero to indicate failure.
@@ -34,12 +32,12 @@ int collect_data(CArgvParse *args) {
         printf(ERROR_COLOR"Error: Multiple JSON flags specified.\n");
         return 1; // Return non-zero to indicate failure.
     }
-    const char *json_file_path = CArgvParse_get_flag(args,json_flag,total_json_flag,0);
+    const char *json_file_path = CArgvParse_get_flag(args,FLAG_JSON,total_json_flag,0);
 
 
     cJSON *data = cJSON_CreateObject();
     for(int i = 0; i <entries_flag_size; i++){
-        const char *current_entrie = CArgvParse_get_flag(args,entries,total_entries,i);
+        const char *current_entrie = CArgvParse_get_flag(args,FLAG_ENTRIES,total_entries,i);
         int type = dtw_entity_type(current_entrie);
         if(type == DTW_FILE_TYPE) {
             add_to_json_if_not_binary(data, current_entrie);
@@ -63,9 +61,8 @@ int collect_data(CArgvParse *args) {
     return 0; // Return 0 to indicate success.
 }
 int implement(CArgvParse *args) {
-    const char *json_flag[] = {"json","j"};
-    int total_json_flag = sizeof(json_flag)/sizeof(char*);
-    int json_flag_size = CArgvParse_get_flag_size(args,json_flag,total_json_flag);
+    int total_json_flag = sizeof(FLAG_JSON)/sizeof(char*);
+    int json_flag_size = CArgvParse_get_flag_size(args,FLAG_JSON,total_json_flag);
     if(json_flag_size == 0){
         printf(ERROR_COLOR"Error: No JSON flag specified.\n");
         return 1; // Return non-zero to indicate failure.
@@ -74,7 +71,7 @@ int implement(CArgvParse *args) {
         printf(ERROR_COLOR"Error: Multiple JSON flags specified.\n");
         return 1; // Return non-zero to indicate failure.
     }
-    const char *json_file_path = CArgvParse_get_flag(args,json_flag,total_json_flag,0);
+    const char *json_file_path = CArgvParse_get_flag(args,FLAG_JSON,total_json_flag,0);
 
     char *json_content = dtw_load_string_file_content(json_file_path);
     if (json_content == NULL) {
