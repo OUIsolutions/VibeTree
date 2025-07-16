@@ -181,7 +181,7 @@ int main(int argc, char *argv[]) {
     CArgvParse args = newCArgvParse(argc,argv);
 
     int total_version_flag = sizeof(FLAG_VERSION)/sizeof(char*);
-    if (CArgvParse_get_flag_size(&args,FLAG_VERSION,total_version_flag) > 0) {
+    if (CArgvParse_is_flags_present(&args,FLAG_VERSION,total_version_flag)) {
         printf("zero800 version %s\n", VERSION);
         return 0;
     }
@@ -196,7 +196,12 @@ int main(int argc, char *argv[]) {
         return collect_data(&args);
     } else if (strcmp(action, "implement") == 0) {
         return implement(&args);
-    } else {
+    } 
+    else if(strcmp(action, "version") == 0) {
+        printf("zero800 version %s\n", VERSION);
+        return 0;
+    }
+    else {
         printf(ERROR_COLOR"Unknown action: %s\n", action);
         return 1;
     }
