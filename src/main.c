@@ -111,6 +111,11 @@ int implement(CArgvParse *args) {
 int main(int argc, char *argv[]) {
     CArgvParse args = newCArgvParse(argc,argv);
     const char *action =  CArgvParse_get_arg(&args, 1);
+    if (action == NULL) {
+        printf(ERROR_COLOR"Error: No action specified. Use 'collect' or 'implement'.\n");
+        return 1; // Return non-zero to indicate failure.
+    }
+    
     if (strcmp(action, "collect") == 0) {
         return collect_data(&args);
     }
