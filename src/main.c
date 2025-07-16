@@ -74,8 +74,8 @@ int collect_data(CArgvParse *args) {
     size_t message_size = strlen(instruction_template) + strlen(json_string) + 1;
     char *whole_message = malloc(message_size);
     snprintf(whole_message, message_size, instruction_template, json_string);
-    printf("chegou aqui%s \n",out_instruction_path);
 
+    
     dtw_write_string_file_content(out_instruction_path, whole_message);
     
     free(json_string);
