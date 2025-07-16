@@ -4,10 +4,7 @@ function windowsi64_build()
         return
     end
     windows_build_done = true
-    silver_chain_organize()
-
-    os.execute("mkdir -p release")
-
+    
     local image = darwin.ship.create_machine("debian:latest")
     image.provider = CONTANIZER
     image.add_comptime_command("apt-get update")
@@ -16,9 +13,7 @@ function windowsi64_build()
     image.start({
         volumes = {
             { "./release", "/release" },
-            { "./src",     "/src" },
-            { "./dependencies",     "/dependencies" }
         },
-        command = "x86_64-w64-mingw32-gcc --static /src/cli/main.c -o /release/windows64.exe"
+        command = "x86_64-w64-mingw32-gcc --static /release/amalgamation.c -o /release/windows64.exe"
     })
 end

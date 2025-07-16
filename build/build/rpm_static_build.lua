@@ -62,6 +62,8 @@ chmod +x %{buildroot}/usr/local/bin/PROJECT_NAME
 
     local image = darwin.ship.create_machine("fedora:latest")
     image.add_comptime_command("dnf install rpm-build rpmdevtools -y")
+    image.provider = CONTANIZER
+
     image.add_comptime_command("dnf install gcc -y")
     image.add_comptime_command("rpmdev-setuptree")
     image.start({
