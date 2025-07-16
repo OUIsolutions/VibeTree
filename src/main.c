@@ -72,8 +72,10 @@ int collect_data(CArgvParse *args) {
     
     // Create a comprehensive instruction message
     const char *instruction_template = 
-        "%s\nIMPORTANT: You must respond in these format: .\n"
-
+        "%s\n\n"
+        "\nIMPORTANT: do not respond the json with content that you did not modified\n"
+        "\nIMPORTANT: only include in the json output, content that you modified \n"
+        "\nIMPORTANT: You must respond in these format: .\n"
         "[\n"
         "  {\"path\": \"file_path_1\", \"content\": \"content_of_file_1 or null\"},\n"
         "  {\"path\": \"file_path_2\", \"content\": \"content_of_file_2 or null\"},\n"
