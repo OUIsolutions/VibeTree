@@ -52,12 +52,13 @@ int collect_data(CArgvParse *args) {
         }
     }
     char *json_string = cJSON_PrintUnformatted(data);
-    char *hole_message = malloc(strlen(json_string) + 50);
+    char *hole_message = malloc(strlen(json_string) + 100);
     sprintf(hole_message, "Answer in the same format of of these json: %s", json_string);
-    free(json_string);
-    free(hole_message);
+
 
     dtw_write_string_file_content(json_file_path, hole_message);
+    free(json_string);
+    free(hole_message);
     cJSON_Delete(data);
     return 0; // Return 0 to indicate success.
 }
