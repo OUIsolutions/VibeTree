@@ -18,6 +18,12 @@ When you try to paste a large codebase into a free AI chatbot, you run into prob
 
 zero800 takes all your code files and combines them into a single "amalgamation JSON" file that you can easily paste into any free AI chatbot. Think of it like zipping your code, but in a way that AI can understand perfectly!
 
+## New Features ✨
+
+- **Custom Prompt Support**: Add a custom instruction prompt to your JSON output using the `--prompt` or `-p` flag when collecting files.
+- **Folder Support**: Now collects all files recursively from specified folders, not just individual files.
+- **Error Handling**: Improved error messages with color-coded output for better clarity.
+
 ## Quick Start for Beginners 🚀
 
 ### Step 1: Download zero800
@@ -37,18 +43,18 @@ Choose the version for your computer:
 Open your terminal/command prompt in your project folder and run:
 
 ```bash
-# Windows example:
-zero80064.exe collect -e src/ -e README.md -j my_project.json
+# Windows example with prompt:
+zero80064.exe collect -e src/ -e README.md -p "Please review and optimize this code" -oi output.json
 
-# Linux/Mac example:
-./zero800.out collect -e src/ -e README.md -j my_project.json
+# Linux/Mac example with folder:
+./zero800.out collect -e src/ -e README.md -p "Add error handling" -oi output.json
 ```
 
-This creates a file called `my_project.json` containing all your code!
+This creates a file called `output.json` containing all your code and the custom prompt!
 
 ### Step 3: Use with Free AI
 
-1. Open `my_project.json` in any text editor
+1. Open `output.json` in any text editor
 2. Copy everything (Ctrl+A, Ctrl+C)
 3. Go to your favorite free AI (ChatGPT, Claude.ai, etc.)
 4. Paste and ask your coding questions!
@@ -71,38 +77,38 @@ This will update all your files automatically! 🎉
 
 ### The `collect` Command - Pack Your Code
 
-The `collect` command gathers your code files and creates a JSON file.
+The `collect` command gathers your code files (including entire folders) and creates a JSON file with an optional custom prompt.
 
 **Basic Syntax:**
 ```bash
-./zero800 collect --entries <files_or_folders> --json <output_file>
+./zero800 collect --entries <files_or_folders> --out-instructions <output_file> [--prompt <custom_prompt>]
 ```
 
 **Short version:**
 ```bash
-./zero800 collect -e <files_or_folders> -j <output_file>
+./zero800 collect -e <files_or_folders> -oi <output_file> [-p <custom_prompt>]
 ```
 
 **Examples:**
 
-1. **Collect a single file:**
+1. **Collect a single file with prompt:**
    ```bash
-   ./zero800 collect -e main.py -j my_code.json
+   ./zero800 collect -e main.py -p "Add documentation" -oi my_code.json
    ```
 
 2. **Collect multiple files:**
    ```bash
-   ./zero800 collect -e main.py -e utils.py -e config.py -j my_code.json
+   ./zero800 collect -e main.py -e utils.py -e config.py -oi my_code.json
    ```
 
 3. **Collect entire folders:**
    ```bash
-   ./zero800 collect -e src/ -e tests/ -j my_project.json
+   ./zero800 collect -e src/ -e tests/ -p "Optimize performance" -oi my_project.json
    ```
 
 4. **Mix files and folders:**
    ```bash
-   ./zero800 collect -e README.md -e src/ -e package.json -j everything.json
+   ./zero800 collect -e README.md -e src/ -e package.json -oi everything.json
    ```
 
 ### The `implement` Command - Unpack Your Code
@@ -132,13 +138,13 @@ Let's say you're building a Python web app:
 
 1. **Collect your project:**
    ```bash
-   ./zero800 collect -e app.py -e templates/ -e static/ -e requirements.txt -j webapp.json
+   ./zero800 collect -e app.py -e templates/ -e static/ -e requirements.txt -p "Add a login system" -oi webapp.json
    ```
 
 2. **Ask AI for help:**
    - Open `webapp.json`
    - Copy everything
-   - Paste in ChatGPT with: "Can you add a login system to this Flask app?"
+   - Paste in ChatGPT with: "Please implement the requested login system"
 
 3. **Save AI's response** to `updated_webapp.json`
 
@@ -171,7 +177,7 @@ darwin run_blueprint build/ --mode folder amalgamation_build alpine_static_build
 
 ## Why "zero800"? 🤷
 
-The name is a clever play on words! In Brazil, "0800" is the prefix for toll-free phone numbers (like 1-800 in the US). Just like those free phone calls, zero800 gives you FREE access to AI coding assistance! 
+The name is a play on words! In Brazil, "0800" is the prefix for toll-free phone numbers (like 1-800 in the US). Just like those free phone calls, zero800 gives you FREE access to AI coding assistance! 
 
 While premium AI coding tools can cost hundreds of dollars per year, zero800 brings that cost down to exactly what a 0800 call costs: **ZERO**! 🇧🇷
 
