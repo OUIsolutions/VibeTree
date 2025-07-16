@@ -1,7 +1,15 @@
 # zero800
 A map system projected to import and export larger code bases to llm 
 
-## Cli Usage
+## Release
+|item | Description |
+|-----|-------------|
+|[amalgamation.c](https://github.com/OUIsolutions/zeero800/releases/download/0.0.1/amalgamation.c) | C Amalgamation|
+|[zero800.deb](https://github.com/OUIsolutions/zeero800/releases/download/0.0.1/zero800.deb) | Debian package|
+|[zero800.rpm](https://github.com/OUIsolutions/zeero800/releases/download/0.0.1/zero800.rpm) | RPM package|
+|[zero80064.exe](https://github.com/OUIsolutions/zeero800/releases/download/0.0.1/zero80064.exe) | Windows 64-bit executable|
+|[zero800i32.exe](https://github.com/OUIsolutions/zeero800/releases/download/0.0.1/zero800i32.exe) | Windows 32-bit executable|
+|[zero800.out](https://github.com/OUIsolutions/zeero800/releases/download/0.0.1/zero800.out) | Linux static binary|
 
 ## CLI Usage
 
