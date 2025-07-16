@@ -39,6 +39,18 @@ int collect_data(CArgvParse *args) {
     }
     const char *out_instruction_path = CArgvParse_get_flag(args,OUT_INSTRUCTIONS,total_out_instructions,0);
 
+    // Check for prompt flag
+    int total_prompt = sizeof(FLAG_PROMPT)/sizeof(char*);
+    int prompt_flag_size = CArgvParse_get_flag_size(args,FLAG_PROMPT,total_prompt);
+    const char *custom_prompt = NULL;
+    if(prompt_flag_size > 0){
+        if(prompt_flag_size > 1){
+            printf(ERROR_COLOR"Error: Multiple prompt flags specified.\n");
+            return 1;
+        }
+        custom_prompt = CArgvParse_get_flag(args,FLAG_PROMPT,total_prompt,0);
+    }
+
     cJSON *data = cJSON_CreateArray();
     for(int i = 0; i <entries_flag_size; i++){
         const char *current_entrie = CArgvParse_get_flag(args,FLAG_ENTRIES,total_entries,i);
@@ -71,9 +83,21 @@ int collect_data(CArgvParse *args) {
         "Here is the specific JSON structure you must follow:\n%s\n\n"
         "Remember: Respond ONLY with the JSON array, nothing else.";
     
-    size_t message_size = strlen(instruction_template) + strlen(json_string) + 1;
+    // Calculate message size considering custom prompt
+    size_t prompt_size = custom_prompt ? strlen(custom_prompt) + 2 : 0; // +2 for "\n\n"
+    size_t message_size = strlen(instruction_template) + strlen(json_string) + prompt_size + 1;
     char *whole_message = malloc(message_size);
-    snprintf(whole_message, message_size, instruction_template, json_string);
+    
+    if (custom_prompt) {
+        snprintf(whole_message, message_size, "%s\n\n%s", custom_prompt, instruction_template);
+        // Now we need to format with json_string
+        char *temp_message = malloc(message_size + strlen(json_string));
+        snprintf(temp_message, message_size + strlen(json_string), whole_message, json_string);
+        free(whole_message);
+        whole_message = temp_message;
+    } else {
+        snprintf(whole_message, message_size, instruction_template, json_string);
+    }
 
     
     dtw_write_string_file_content(out_instruction_path, whole_message);
