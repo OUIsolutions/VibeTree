@@ -3,6 +3,8 @@
 #include "flags.h"
 #include "colors.h"
 
+#define VERSION "0.0.1"
+
 void add_to_json(cJSON *out_json,const char *file_path) {
     cJSON *file_obj = cJSON_CreateObject();
     cJSON_AddStringToObject(file_obj, "path", file_path);
@@ -177,6 +179,13 @@ int implement(CArgvParse *args) {
 
 int main(int argc, char *argv[]) {
     CArgvParse args = newCArgvParse(argc,argv);
+
+    int total_version_flag = sizeof(FLAG_VERSION)/sizeof(char*);
+    if (CArgvParse_get_flag_size(&args,FLAG_VERSION,total_version_flag) > 0) {
+        printf("zero800 version %s\n", VERSION);
+        return 0;
+    }
+
     const char *action = CArgvParse_get_arg(&args, 1);
     if (action == NULL) {
         printf(ERROR_COLOR"Error: No action specified. Use 'collect' or 'implement'.\n");

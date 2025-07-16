@@ -23,6 +23,7 @@ zero800 takes all your code files and combines them into a single "amalgamation 
 - **Custom Prompt Support**: Add a custom instruction prompt to your JSON output using the `--prompt` or `-p` flag when collecting files.
 - **Folder Support**: Now collects all files recursively from specified folders, not just individual files.
 - **Error Handling**: Improved error messages with color-coded output for better clarity.
+- **Version Flag**: Check the current version of zero800 using `--version` or `-v`.
 
 ## Quick Start for Beginners 🚀
 
@@ -132,6 +133,25 @@ The `implement` command takes a JSON file and creates/updates the files on your 
 
 ⚠️ **Warning:** This will overwrite existing files! Make sure to backup your work first.
 
+### The `--version` or `-v` Command - Check Version
+
+Use this flag to quickly see the current version of zero800.
+
+**Basic Syntax:**
+```bash
+./zero800 --version
+```
+
+**Short version:**
+```bash
+./zero800 -v
+```
+
+**Example Output:**
+```
+zero800 version 0.0.1
+```
+
 ## Real-World Example 🌟
 
 Let's say you're building a Python web app:
@@ -165,12 +185,12 @@ If you want to modify zero800 or build it yourself:
 
 ### Quick Darwin Installation (Linux):
 ```bash
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.4.0/darwin.out -o darwin.out && sudo chmod +x darwin.out && sudo mv darwin.out /usr/bin/darwin
+curl -L [https://github.com/OUIsolutions/Darwin/releases/download/0.4.0/darwin.out](https://github.com/OUIsolutions/Darwin/releases/download/0.4.0/darwin.out) -o darwin.out && sudo chmod +x darwin.out && sudo mv darwin.out /usr/bin/darwin
 ```
 
 ### Build Command:
 ```bash
-git clone https://github.com/OUIsolutions/zeero800.git
+git clone [https://github.com/OUIsolutions/zeero800.git](https://github.com/OUIsolutions/zeero800.git)
 cd zeero800
 darwin run_blueprint build/ --mode folder amalgamation_build alpine_static_build windowsi32_build windowsi64_build rpm_static_build debian_static_build --provider podman
 ```
